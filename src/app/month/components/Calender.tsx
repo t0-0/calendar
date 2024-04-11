@@ -1,5 +1,6 @@
 "use client";
 
+import Header from "./Header";
 import { useState } from "react";
 import Button from "./Button";
 import clsx from "clsx";
@@ -39,7 +40,7 @@ const Calender = () => {
   };
   return (
     <div className="flex flex-col items-center">
-      20xx年y月
+      <Header selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       <div className="grid grid-cols-7 w-11/12">
         {dayOfWeek.map((day, i) => (
           <div
