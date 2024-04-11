@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Button from "./Button";
+import clsx from "clsx";
 
 const Calender = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -28,6 +30,13 @@ const Calender = () => {
     );
     return (tmpDate.getDay() + 6) % 7;
   };
+  const changeSelectedDate = (i: number) => {
+    setSelectedDate((prev) => {
+      const tmpDate = new Date();
+      tmpDate.setFullYear(prev.getFullYear(), prev.getMonth(), i + 1);
+      return tmpDate;
+    });
+  };
   return (
     <div className="flex flex-col items-center">
       20xx年y月
@@ -45,9 +54,16 @@ const Calender = () => {
         })}
         {Array.from({ length: lastDate() }).map((_, i) => {
           return (
-            <div key={i} className="border flex items-center text-center justify-center aspect-square">
-              {i}
-            </div>
+            <Button
+              key={i}
+              className={clsx({
+                "bg-blue-200": i + 1 === selectedDate.getDate(),
+              })}
+              onClick={() => changeSelectedDate(i)}
+              isIgnoreHover={i + 1 === selectedDate.getDate() ? true : false}
+            >
+              <div>{i + 1}</div>
+            </Button>
           );
         })}
         {Array.from({ length: 6 - lastDayOfMonth() }).map((_, i) => {
