@@ -1,6 +1,3 @@
-import { D1Database, PagesFunction } from "@cloudflare/workers-types";
-import type { Response } from "@cloudflare/workers-types"
-
 interface Env {
     CALENDAR_DB: D1Database;
 }
